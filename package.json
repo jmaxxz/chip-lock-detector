@@ -1,0 +1,14 @@
+{
+  "name": "chip_lock_scanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "detect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jmaxxz",
+  "license": "MIT",
+  "dependencies": {
+    "noble": "^1.7.0"
+  }
+}
