@@ -9,6 +9,8 @@
   "author": "jmaxxz",
   "license": "MIT",
   "dependencies": {
+    "chip-io": "^2.0.2",
+    "johnny-five": "^0.10.1",
     "noble": "^1.7.0"
   }
 }
