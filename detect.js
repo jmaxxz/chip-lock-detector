@@ -4,11 +4,12 @@ const chipio = require('chip-io');
 
 const minRssi = -70;
 const maxRssi = -35;
-const minBrightness = 1;
+const minBrightness = 5;
 const maxBrightness = 254;
 const rssiIncrement = (maxBrightness-minBrightness)/(maxRssi - minRssi);
 
 var board = new five.Board({
+  repl: false,
   io: new chipio()
 });
 
