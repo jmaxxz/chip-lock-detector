@@ -13,8 +13,8 @@ var board = new five.Board({
   io: new chipio()
 });
 
-var logError = function(error) {
-  console.error(error);
+var logError = function(msg) {
+  return function(error) { console.error(msg, error) };
 }
 
 board.on('ready', function() {
@@ -41,15 +41,15 @@ board.on('ready', function() {
 
   noble.on('stateChange', function(state) {
     if (state === 'poweredOn') {
-      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError);
+      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError("Start scanning"));
     } else {
       noble.stopScanning();
     }
   });
   noble.on('stopScanning', function() {
-    noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError);
+    noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError("Resume scanning"));
   });
-  noble.on('warning', logError);
+  noble.on('warning', logError("Noble warning"));
 
   noble.on('discover', function(peripheral){
     if(sawBeacon && peripheral.rssi <= previousRssi) {
