@@ -13,6 +13,9 @@ var board = new five.Board({
   io: new chipio()
 });
 
+var logError = function(error) {
+  console.error(error);
+}
 
 board.on('ready', function() {
   var led = new chipio.StatusLed();
@@ -38,11 +41,15 @@ board.on('ready', function() {
 
   noble.on('stateChange', function(state) {
     if (state === 'poweredOn') {
-      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true);
+      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError);
     } else {
       noble.stopScanning();
     }
   });
+  noble.on('stopScanning', function() {
+    noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError);
+  });
+  noble.on('warning', logError);
 
   noble.on('discover', function(peripheral){
     if(sawBeacon && peripheral.rssi <= previousRssi) {
