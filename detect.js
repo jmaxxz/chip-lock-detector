@@ -53,7 +53,7 @@ board.on('ready', function() {
     led.on();
     var rssi = Math.max(peripheral.rssi, minRssi);
     rssi = Math.min(peripheral.rssi, maxRssi);
-    normalizedRssi = (maxRssi - rssi) * rssiIncrement;
+    normalizedRssi =  (rssi-minRssi) * rssiIncrement;
     rssiIndicator.brightness(minBrightness + normalizedRssi);
   });
 });
