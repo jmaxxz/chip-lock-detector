@@ -29,5 +29,7 @@ sudo adduser chip i2c
 ###Install this app
 
 ```bash
-git clone git@github.com:jmaxxz/chip-lock-detector.git
+git clone https://github.com/jmaxxz/chip-lock-detector.git
+cd chip-lock-detector
+npm install
 ```
