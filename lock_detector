@@ -8,7 +8,7 @@
 # Description:       Detects August smart locks
 ### END INIT INFO
 
-SCRIPT="/usr/bin/node /home/chip/Documents/chip-lock-detector/detect.js"
+SCRIPT="/usr/bin/node /home/chip/chip-lock-detector/detect.js"
 RUNAS=root
 
 PIDFILE=/var/run/lock_detector.pid
