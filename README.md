@@ -10,7 +10,10 @@ sudo nmcli device wifi connect '(your wifi network name/SSID)' password '(your w
 ```
 
 ###Install prereqs
+
 ```bash
+sudo apt-get install git
+
 # Install NodeJS 6.x
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -21,4 +24,10 @@ sudo apt-get install -y bluetooth bluez libbluetooth-dev libudev-dev
 # Chip-IO Prereqs
 sudo apt-get install -y build-essential
 sudo adduser chip i2c
+```
+
+###Install this app
+
+```bash
+git clone git@github.com:jmaxxz/chip-lock-detector.git
 ```
