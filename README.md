@@ -16,9 +16,9 @@ curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # Noble JS prereqs
-sudo apt-get install bluetooth bluez libbluetooth-dev libudev-dev
+sudo apt-get install -y bluetooth bluez libbluetooth-dev libudev-dev
 
 # Chip-IO Prereqs
-sudo apt-get install build-essential
+sudo apt-get install -y build-essential
 sudo adduser chip i2c
 ```
