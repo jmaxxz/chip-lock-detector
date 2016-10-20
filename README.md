@@ -32,4 +32,7 @@ sudo adduser chip i2c
 git clone https://github.com/jmaxxz/chip-lock-detector.git
 cd chip-lock-detector
 npm install
+sudo cp lock_detector /etc/init.d/
+sudo update-rc.d lock_detector defaults
+sudo /etc/init.d/lock_detector start
 ```
