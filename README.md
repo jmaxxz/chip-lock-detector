@@ -13,7 +13,7 @@ sudo nmcli device wifi connect '(your wifi network name/SSID)' password '(your w
 
 ```bash
 sudo apt-get update
-sudo apt-get install git
+sudo apt-get -y install git
 
 # Install NodeJS 6.x
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
