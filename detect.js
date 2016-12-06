@@ -13,9 +13,13 @@ var board = new five.Board({
   io: new chipio()
 });
 
+var logError = function(msg) {
+  return function(error) { console.error(msg, error) };
+}
 
 board.on('ready', function() {
   var led = new chipio.StatusLed();
+  var runningIndicator = new five.Led(33);
   var rssiIndicator = new five.Led(18);
   var sawBeacon = false;
   var previousRssi = minRssi;
@@ -24,6 +28,7 @@ board.on('ready', function() {
   rssiIndicator.off();
 
   board.on('exit', function() {
+    runningIndicator.off();
     led.off();
     rssiIndicator.off();
   });
@@ -34,15 +39,21 @@ board.on('ready', function() {
       rssiIndicator.off();
     }
     sawBeacon = false;
+    runningIndicator.toggle();
   }, 1000);
 
   noble.on('stateChange', function(state) {
     if (state === 'poweredOn') {
-      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true);
+      noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError("Start scanning"));
     } else {
       noble.stopScanning();
     }
   });
+  noble.on('stopScanning', function() {
+    console.log("Scanning has stopped");
+    noble.startScanning(["bd4ac6100b4511e38ffd0800200c9a66"], true, logError("Resume scanning"));
+  });
+  noble.on('warning', logError("Noble warning"));
 
   noble.on('discover', function(peripheral){
     if(sawBeacon && peripheral.rssi <= previousRssi) {
